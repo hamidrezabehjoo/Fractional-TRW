@@ -65,5 +65,5 @@ for trial in range(trials):
 #    print("Average error. TRBP: %f" % np.mean(np.abs(tr_diff[:trial + 1])))
 
 
-print(edge_probabilities)
+#print(edge_probabilities)
 
