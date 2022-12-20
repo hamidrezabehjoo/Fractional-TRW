@@ -1,0 +1,9 @@
+build
+*~
+*.pyc
+*.DS_Store
+.idea/*
+*.xls
+dist/*
+mrftools.egg-info/
+virtualenvs/
