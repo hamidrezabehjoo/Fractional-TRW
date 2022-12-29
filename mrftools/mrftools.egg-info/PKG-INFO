@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: mrftools
+Version: 0.0.1
+Summary: Learning and inference with Markov random fields
+Home-page: http://learning.cs.vt.edu
+Author: Virginia Tech Machine Learning Laboratory
+Author-email: bhuang@vt.edu
+License: MIT
