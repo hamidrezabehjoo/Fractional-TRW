@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 
 #################### Generate planar graph of size nxn #######################################################################
 
-m = 4
-n = 4
+m = 3
+n = 3
 grid_size = m*n
 k = 2 #alphabet size
 
@@ -42,9 +42,9 @@ print("z_true:\t", z_true)
 edge_probabilities = dict()
 
 for edge in mn.edge_potentials:
-    edge_probabilities[edge] = np.random.uniform(0,1,1)[0]
+    #edge_probabilities[edge] = np.random.uniform(0,1,1)[0]
     #edge_probabilities[edge] = 2/grid_size # in complete graph
-    #edge_probabilities[edge] = (np.sqrt(grid_size)+1)/(2*np.sqrt(grid_size))  # for planar graph
+    edge_probabilities[edge] = (np.sqrt(grid_size)+1)/(2*np.sqrt(grid_size))  # for planar graph
 # uniform trw p_e = (|V|-1) / |E|
 
 ##################### Fractional TRW ########################################################################################
@@ -123,8 +123,8 @@ for t in tt:
   print ("TRBP matrix energy functional: %f" % trbp.compute_energy_functional())
 
 
-np.savetxt("results/4x4/Z.txt", np.array(Z))
-np.savetxt("results/4x4/C.txt", np.array(C))
+np.savetxt("results/5x5/Z.txt", np.array(Z))
+np.savetxt("results/5x5/C.txt", np.array(C))
 
 
 plt.figure(0)
@@ -136,7 +136,7 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {C^{(\lambda)}}$')
 #plt.grid()
-plt.savefig("results/4x4/C_FTRW.pdf")
+plt.savefig("results/5x5/C_FTRW.pdf")
 
 
 plt.figure(1)
@@ -148,7 +148,7 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {Z^{(\lambda)}}$')
 #plt.grid()
-plt.savefig("results/4x4/Z_FTRW.pdf")
+plt.savefig("results/5x5/Z_FTRW.pdf")
 
 ############################################################################################################################################
 

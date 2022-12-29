@@ -4,7 +4,7 @@ close all
 
 
 %% Represent denoising as UGM
-X = rand(4,4);
+X = rand(3,3);
 [nRows,nCols] = size(X);
 nNodes = nRows*nCols;
 nStates = 2;

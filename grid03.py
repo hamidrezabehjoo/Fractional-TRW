@@ -4,12 +4,9 @@ import numpy as np
 from scipy.stats import bernoulli
 import matplotlib.pyplot as plt
 
-
 #################### Generate planar graph of size nxn #######################################################################
-
-m = 4
-n = 4
-grid_size = m*n
+n = 3
+grid_size = n**2
 k = 2 #alphabet size
 
 mn = MarkovNet()
@@ -28,26 +25,21 @@ for i in range(grid_size):
             u = np.random.uniform(0, 1, 1)[0]
             mn.set_edge_factor((i, j), np.array([[ np.exp(u) , np.exp(-u)], [np.exp(-u), np.exp(u)]]) )
 
-
 #print(mn.variables)
 #print(mn.get_neighbors(0) )
-
-######################## Exact Value of Partition Function ##################################################################
-bf = BruteForce(mn)
-z_true = np.log(bf.compute_z())
-print("z_true:\t", z_true)
-#z_true = 105.49893569871489
-
-####################### Assign Edge probabilities ###########################################################################
+####################### Assign Edge probabilities ###########################################################
 edge_probabilities = dict()
 
 for edge in mn.edge_potentials:
-    edge_probabilities[edge] = np.random.uniform(0,1,1)[0]
+    #edge_probabilities[edge] = np.random.uniform(0,1,1)[0]
     #edge_probabilities[edge] = 2/grid_size # in complete graph
-    #edge_probabilities[edge] = (np.sqrt(grid_size)+1)/(2*np.sqrt(grid_size))  # for planar graph
+    edge_probabilities[edge] = (n+1)/(2*n)  # for planar graph
 # uniform trw p_e = (|V|-1) / |E|
 
-##################### Fractional TRW ########################################################################################
+##################### BP ####################################################################################
+bf = BruteForce(mn)
+z_true = np.log(bf.compute_z())
+print("z_true:\t", z_true)
 
 trbp = MatrixTRBeliefPropagator(mn, edge_probabilities)
 trbp.infer(display='off')
@@ -55,14 +47,12 @@ trbp.load_beliefs()
 z_trw = trbp.compute_energy_functional()
 print("z_trw:\t", z_trw)
 
-
 bp = BeliefPropagator(mn)
 bp.infer(display='off')
 bp.load_beliefs()
 z_bp = bp.compute_energy_functional()
 print("z_bp:\t", z_bp)
-
-#################### Compute Correction Factor ##############################################################################
+#################### Compute Correction Factor ##############################################################
 def B1(x, edge_probabilities, grid_size):
     den = 1
     for i in range(grid_size):
@@ -104,7 +94,7 @@ def corr_factor(n_samples, n_MC):
             correction_factor += a/b
     return np.log(correction_factor/n_samples)
 
-############################################################################################################
+#############################################################################################################
 Z = []
 C = []
 tt = np.linspace(0, 1, 21)
@@ -118,13 +108,13 @@ for t in tt:
   trbp = MatrixTRBeliefPropagator(mn, edge_probabilities)
   trbp.infer(display='off')
   trbp.load_beliefs()
-  C.append(corr_factor(grid_size**4, 10))
+  C.append(corr_factor(grid_size**5, 10))
   Z.append(trbp.compute_energy_functional())
   print ("TRBP matrix energy functional: %f" % trbp.compute_energy_functional())
 
 
-np.savetxt("results/4x4/Z.txt", np.array(Z))
-np.savetxt("results/4x4/C.txt", np.array(C))
+np.savetxt("results/3x3/Z.txt", np.array(Z))
+np.savetxt("results/3x3/C.txt", np.array(C))
 
 
 plt.figure(0)
@@ -136,7 +126,7 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {C^{(\lambda)}}$')
 #plt.grid()
-plt.savefig("results/4x4/C_FTRW.pdf")
+plt.savefig("results/3x3/C_FTRW.pdf")
 
 
 plt.figure(1)
@@ -148,10 +138,5 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {Z^{(\lambda)}}$')
 #plt.grid()
-plt.savefig("results/4x4/Z_FTRW.pdf")
-
-############################################################################################################################################
-
-
-
-
+plt.savefig("results/3x3/Z_FTRW.pdf")
+#############################################################################################################
