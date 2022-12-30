@@ -44,4 +44,4 @@ conda activate zahra
 #python3 setup.py install
 ### Run your work
 cd ~/Fractional-TRW
-python3 grid04.py
+python3 grid03.py
