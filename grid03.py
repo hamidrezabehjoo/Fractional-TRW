@@ -34,19 +34,18 @@ for edge in mn.edge_potentials:
     #edge_probabilities[edge] = np.random.uniform(0,1,1)[0]
     #edge_probabilities[edge] = 2/grid_size # in complete graph
     edge_probabilities[edge] = (n+1)/(2*n)  # for planar graph
-# uniform trw p_e = (|V|-1) / |E|
-
+# uniform trw p_e = (|V|-1) / |E|, originally from Wainright paper. 
 ##################### BP ####################################################################################
 bf = BruteForce(mn)
 z_true = np.log(bf.compute_z())
 print("z_true:\t", z_true)
-
+"""
 trbp = MatrixTRBeliefPropagator(mn, edge_probabilities)
 trbp.infer(display='off')
 trbp.load_beliefs()
 z_trw = trbp.compute_energy_functional()
 print("z_trw:\t", z_trw)
-
+"""
 bp = BeliefPropagator(mn)
 bp.infer(display='off')
 bp.load_beliefs()
@@ -74,6 +73,7 @@ def B11(x, edge_probabilities, grid_size):
     num = 1
     for edge, _ in edge_probabilities.items():
         B = np.exp(trbp.pair_beliefs[edge])
+        print(B)
         if x[edge[0]]==x[edge[1]]:
            num *= B[0,0] ** edge_probabilities[edge]
            #print("Hi")

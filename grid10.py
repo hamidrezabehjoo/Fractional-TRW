@@ -4,12 +4,9 @@ import numpy as np
 from scipy.stats import bernoulli
 import matplotlib.pyplot as plt
 
-
 #################### Generate planar graph of size nxn #######################################################################
-
-m = 4
-n = 4
-grid_size = m*n
+n = 10
+grid_size = n**2
 k = 2 #alphabet size
 
 mn = MarkovNet()
@@ -28,26 +25,20 @@ for i in range(grid_size):
             u = np.random.uniform(0, 1, 1)[0]
             mn.set_edge_factor((i, j), np.array([[ np.exp(u) , np.exp(-u)], [np.exp(-u), np.exp(u)]]) )
 
-
 #print(mn.variables)
 #print(mn.get_neighbors(0) )
-
-######################## Exact Value of Partition Function ##################################################################
-bf = BruteForce(mn)
-z_true = np.log(bf.compute_z())
-print("z_true:\t", z_true)
-#z_true = 105.49893569871489
-
-####################### Assign Edge probabilities ###########################################################################
+####################### Assign Edge probabilities ###########################################################
 edge_probabilities = dict()
 
 for edge in mn.edge_potentials:
-    edge_probabilities[edge] = np.random.uniform(0,1,1)[0]
+    #edge_probabilities[edge] = np.random.uniform(0,1,1)[0]
     #edge_probabilities[edge] = 2/grid_size # in complete graph
-    #edge_probabilities[edge] = (np.sqrt(grid_size)+1)/(2*np.sqrt(grid_size))  # for planar graph
-# uniform trw p_e = (|V|-1) / |E|
-
-##################### Fractional TRW ########################################################################################
+    edge_probabilities[edge] = (n+1)/(2*n)  # for planar graph
+#uniform trw p_e = (|V|-1) / |E|, originally from Wainright paper. 
+##################### BP ####################################################################################
+bf = BruteForce(mn)
+z_true = np.log(bf.compute_z())
+print("z_true:\t", z_true)
 
 trbp = MatrixTRBeliefPropagator(mn, edge_probabilities)
 trbp.infer(display='off')
@@ -55,43 +46,54 @@ trbp.load_beliefs()
 z_trw = trbp.compute_energy_functional()
 print("z_trw:\t", z_trw)
 
-
 bp = BeliefPropagator(mn)
 bp.infer(display='off')
 bp.load_beliefs()
 z_bp = bp.compute_energy_functional()
 print("z_bp:\t", z_bp)
 
-#################### Compute Correction Factor ##############################################################################
-def B1(x, edge_probabilities, grid_size):
-    den = 1
-    for i in range(grid_size):
-        sum1 = 0
-        s = mn.get_neighbors(i)
-        for a in s:
-            if a < i:
-	       #print(edge_probabilities[(a,i)])
-               sum1 += edge_probabilities[(a,i)]
-            else:
-		#print(edge_probabilities[(i,a)])
-               sum1 += edge_probabilities[(i,a)]
-				
-        den *= (0.5)** sum1
-    return den
-
-
+#################### Compute Correction Factor ##############################################################
 def B11(x, edge_probabilities, grid_size):
     num = 1
     for edge, _ in edge_probabilities.items():
         B = np.exp(trbp.pair_beliefs[edge])
-        if x[edge[0]]==x[edge[1]]:
-           num *= B[0,0] ** edge_probabilities[edge]
-           #print("Hi")
-        else:
-           num *= B[0,1] ** edge_probabilities[edge]
-           #print('Salam')
+        num *= B[x[edge[0]], x[edge[1]]] ** edge_probabilities[edge]
     return num
+
+
+def B00(x, edge_probabilities, grid_size):
+    den = 1
+    for i in range(grid_size):
+        sum1 = 0
+        s = mn.get_neighbors(i)
+        b = np.exp(trbp.var_beliefs[i])
+        for a in s:
+            if a < i:
+               sum1 += edge_probabilities[(a,i)]
+            else:
+               sum1 += edge_probabilities[(i,a)]				
+        den *= (b[x[i]])** sum1
+    return den
+
     
+
+
+def grad(x, edge_probabilities):
+    H_ab, H_a, H_b = 0, 0, 0
+    for edge, weight in edge_probabilities.items():
+        print(weight)
+        B = np.exp(trbp.pair_beliefs[edge])
+        a = np.exp(trbp.var_beliefs[edge[0]])
+        b = np.exp(trbp.var_beliefs[edge[1]])
+        
+        dummy = B[x[edge[0]], x[edge[1]]]
+        cummy = a[x[edge[0]]]
+        mummy = b[x[edge[1]]]
+        H_ab += -dummy * np.log(dummy) *(1-weight)
+        H_a  +=  cummy * np.log(cummy) *(1-weight)
+        H_a  +=  mummy * np.log(mummy) *(1-weight)
+    
+    return H_ab + H_a + H_b
 
 
 def corr_factor(n_samples, n_MC):
@@ -100,13 +102,14 @@ def corr_factor(n_samples, n_MC):
         for k in range(n_samples):
             x = bernoulli.rvs(0.5, size=grid_size)
             a = B11(x, edge_probabilities, grid_size)
-            b =  B1(x, edge_probabilities, grid_size)
+            b = B00(x, edge_probabilities, grid_size)
             correction_factor += a/b
     return np.log(correction_factor/n_samples)
 
-############################################################################################################
+#############################################################################################################
 Z = []
 C = []
+G = []
 tt = np.linspace(0, 1, 21)
 
 for t in tt:
@@ -118,14 +121,16 @@ for t in tt:
   trbp = MatrixTRBeliefPropagator(mn, edge_probabilities)
   trbp.infer(display='off')
   trbp.load_beliefs()
-  C.append(corr_factor(grid_size**4, 10))
+  C.append(corr_factor(grid_size**5, 10))
   Z.append(trbp.compute_energy_functional())
+  x = bernoulli.rvs(0.5, size=grid_size)
+  G.append(grad(x, edge_probabilities))
   print ("TRBP matrix energy functional: %f" % trbp.compute_energy_functional())
 
 
-np.savetxt("results/4x4/Z.txt", np.array(Z))
-np.savetxt("results/4x4/C.txt", np.array(C))
-
+np.savetxt("results/10x10/Z.txt", np.array(Z))
+np.savetxt("results/10x10/C.txt", np.array(C))
+np.savetxt("results/10x10/G.txt", np.array(G))
 
 plt.figure(0)
 plt.plot(tt, C, 'bo', lw=2)
@@ -135,8 +140,8 @@ plt.xlim([0, 1])
 #plt.xscale('log')
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {C^{(\lambda)}}$')
-#plt.grid()
-plt.savefig("results/4x4/C_FTRW.pdf")
+plt.grid()
+plt.savefig("results/10x10/C_FTRW.pdf")
 
 
 plt.figure(1)
@@ -147,11 +152,18 @@ plt.xlim([0, 1])
 #plt.xscale('log')
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {Z^{(\lambda)}}$')
-#plt.grid()
-plt.savefig("results/4x4/Z_FTRW.pdf")
+plt.grid()
+plt.savefig("results/10x10/Z_FTRW.pdf")
 
-############################################################################################################################################
-
-
-
+plt.figure(2)
+plt.plot(tt, G, 'ro', lw=2)
+plt.plot(tt, -0.5 * np.ones(tt.shape),'--', lw = 1)
+plt.xlim([0, 1])
+#plt.yscale('log')
+#plt.xscale('log')
+plt.xlabel('$\lambda$')
+plt.ylabel('$G$')
+plt.grid()
+plt.savefig("results/10x10/G.pdf")
+#############################################################################################################
 
