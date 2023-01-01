@@ -5,15 +5,15 @@ from scipy.stats import bernoulli
 import matplotlib.pyplot as plt
 
 #################### Generate planar graph of size nxn #######################################################################
-n = 3
+n = 4
 grid_size = n**2
 k = 2 #alphabet size
 
 mn = MarkovNet()
 
 for i in range(grid_size):
-    mn.set_unary_factor(i, np.ones(k))
-    #mn.set_unary_factor(i, np.random.rand(k) )
+    #mn.set_unary_factor(i, np.ones(k))
+    mn.set_unary_factor(i, np.random.rand(k) )
 
 for i in range(grid_size):
     for j in range(grid_size):
@@ -135,9 +135,9 @@ for t in tt:
   print ("TRBP matrix energy functional: %f" % trbp.compute_energy_functional())
 
 
-np.savetxt("results/3x3/Z.txt", np.array(Z))
-np.savetxt("results/3x3/C.txt", np.array(C))
-np.savetxt("results/3x3/G.txt", np.array(G))
+np.savetxt("results/4x4/Z.txt", np.array(Z))
+np.savetxt("results/4x4/C.txt", np.array(C))
+np.savetxt("results/4x4/G.txt", np.array(G))
 
 plt.figure(0)
 plt.plot(tt, C, 'bo', lw=2)
@@ -148,7 +148,7 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {C^{(\lambda)}}$')
 plt.grid()
-plt.savefig("results/3x3/C_FTRW.pdf")
+plt.savefig("results/4x4/C_FTRW.pdf")
 
 
 plt.figure(1)
@@ -160,7 +160,7 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {Z^{(\lambda)}}$')
 plt.grid()
-plt.savefig("results/3x3/Z_FTRW.pdf")
+plt.savefig("results/4x4/Z_FTRW.pdf")
 
 plt.figure(2)
 plt.plot(tt, G, 'ro', lw=2)
@@ -171,6 +171,6 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$G$')
 plt.grid()
-plt.savefig("results/3x3/G.pdf")
+plt.savefig("results/4x4/G.pdf")
 #############################################################################################################
 

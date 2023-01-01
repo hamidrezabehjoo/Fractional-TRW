@@ -13,6 +13,7 @@ mn = MarkovNet()
 
 for i in range(grid_size):
     mn.set_unary_factor(i, np.ones(k))
+    #mn.set_unary_factor(i, np.random.rand(k) )
 
 for i in range(grid_size):
     for j in range(grid_size):
@@ -34,7 +35,6 @@ for edge in mn.edge_potentials:
     #edge_probabilities[edge] = np.random.uniform(0,1,1)[0]
     #edge_probabilities[edge] = 2/grid_size # in complete graph
     edge_probabilities[edge] = (n+1)/(2*n)  # for planar graph
-#uniform trw p_e = (|V|-1) / |E|, originally from Wainright paper. 
 ##################### BP ####################################################################################
 bf = BruteForce(mn)
 z_true = np.log(bf.compute_z())
@@ -74,14 +74,33 @@ def B00(x, edge_probabilities, grid_size):
                sum1 += edge_probabilities[(i,a)]				
         den *= (b[x[i]])** sum1
     return den
+   
+def corr_factor(n_samples, n_MC):
+    for i in range(n_MC):
+        correction_factor = 0
+        for k in range(n_samples):
+            #x = bernoulli.rvs(0.5, size=grid_size)
+            x = gen_samples(grid_size)
+            a = B11(x, edge_probabilities, grid_size)
+            b = B00(x, edge_probabilities, grid_size)
+            correction_factor += a/b
+    return np.log(correction_factor/n_samples)
 
-    
+
+
+def gen_samples(grid_size):
+    x = np.zeros(grid_size) 
+    for i in range(grid_size):
+        p = np.exp(trbp.var_beliefs[i])
+        x[i] = bernoulli.rvs(1-p[0], 0)
+    return x.astype(int)
+
 
 
 def grad(x, edge_probabilities):
     H_ab, H_a, H_b = 0, 0, 0
     for edge, weight in edge_probabilities.items():
-        print(weight)
+        #print(weight)
         B = np.exp(trbp.pair_beliefs[edge])
         a = np.exp(trbp.var_beliefs[edge[0]])
         b = np.exp(trbp.var_beliefs[edge[1]])
@@ -94,18 +113,6 @@ def grad(x, edge_probabilities):
         H_a  +=  mummy * np.log(mummy) *(1-weight)
     
     return H_ab + H_a + H_b
-
-
-def corr_factor(n_samples, n_MC):
-    for i in range(n_MC):
-        correction_factor = 0
-        for k in range(n_samples):
-            x = bernoulli.rvs(0.5, size=grid_size)
-            a = B11(x, edge_probabilities, grid_size)
-            b = B00(x, edge_probabilities, grid_size)
-            correction_factor += a/b
-    return np.log(correction_factor/n_samples)
-
 #############################################################################################################
 Z = []
 C = []
@@ -123,7 +130,7 @@ for t in tt:
   trbp.load_beliefs()
   C.append(corr_factor(grid_size**5, 10))
   Z.append(trbp.compute_energy_functional())
-  x = bernoulli.rvs(0.5, size=grid_size)
+  x = gen_samples(grid_size)
   G.append(grad(x, edge_probabilities))
   print ("TRBP matrix energy functional: %f" % trbp.compute_energy_functional())
 
