@@ -17,14 +17,10 @@ for i in range(grid_size):
 
 for i in range(grid_size):
     for j in range(grid_size):
-        if  j-i ==1 and j%n !=0 :
-            print(i,j)
-            u = np.random.uniform(0, 1, 1)[0]
-            mn.set_edge_factor((i, j), np.array([[ np.exp(u) , np.exp(-u)], [np.exp(-u), np.exp(u)]]) )
-        if j-i == n:
-            print(i,j)
-            u = np.random.uniform(0, 1, 1)[0]
-            mn.set_edge_factor((i, j), np.array([[ np.exp(u) , np.exp(-u)], [np.exp(-u), np.exp(u)]]) )
+        if i>j:
+           u = np.random.uniform(0, 1, 1)[0]
+           mn.set_edge_factor((i, j), np.array([[ np.exp(u) , np.exp(-u)], [np.exp(-u), np.exp(u)]]) )
+           #mn.set_edge_factor((i, j), np.random.rand(k, k))
 
 #print(mn.variables)
 #print(mn.get_neighbors(0) )
@@ -33,8 +29,8 @@ edge_probabilities = dict()
 
 for edge in mn.edge_potentials:
     #edge_probabilities[edge] = np.random.uniform(0,1,1)[0]
-    #edge_probabilities[edge] = 2/grid_size # in complete graph
-    edge_probabilities[edge] = (n+1)/(2*n)  # for planar graph
+    edge_probabilities[edge] = 2/grid_size # in complete graph
+    #edge_probabilities[edge] = (n+1)/(2*n)  # for planar graph
 ##################### BP ####################################################################################
 bf = BruteForce(mn)
 z_true = np.log(bf.compute_z())
@@ -130,16 +126,16 @@ for t in tt:
   trbp = MatrixTRBeliefPropagator(mn, edge_probabilities)
   trbp.infer(display='off')
   trbp.load_beliefs()
-  C.append(corr_factor(grid_size**5, 1))
+  C.append(corr_factor(grid_size**5, 10))
   Z.append(trbp.compute_energy_functional())
   x = gen_samples(grid_size)
   G.append(grad(x, edge_probabilities))
   print ("TRBP matrix energy functional: %f" % trbp.compute_energy_functional())
 
 
-np.savetxt("results/4x4/Z.txt", np.array(Z))
-np.savetxt("results/4x4/C.txt", np.array(C))
-np.savetxt("results/4x4/G.txt", np.array(G))
+np.savetxt("results/k16/non_zero/Z.txt", np.array(Z))
+np.savetxt("results/k16/non_zero/C.txt", np.array(C))
+np.savetxt("results/k16/non_zero/G.txt", np.array(G))
 
 plt.figure(0)
 plt.plot(tt, C, 'bo', lw=2)
@@ -150,7 +146,7 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {C^{(\lambda)}}$')
 plt.grid()
-plt.savefig("results/4x4/C_FTRW.pdf")
+plt.savefig("results/k16/non_zero/C_FTRW.pdf")
 
 
 plt.figure(1)
@@ -162,7 +158,7 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {Z^{(\lambda)}}$')
 plt.grid()
-plt.savefig("results/4x4/Z_FTRW.pdf")
+plt.savefig("results/k16/non_zero/Z_FTRW.pdf")
 
 plt.figure(2)
 plt.plot(tt, G, 'ro', lw=2)
@@ -173,6 +169,6 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$G$')
 plt.grid()
-plt.savefig("results/4x4/G.pdf")
+plt.savefig("results/k16/non_zero/G.pdf")
 #############################################################################################################
 

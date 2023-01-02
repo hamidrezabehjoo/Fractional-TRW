@@ -44,4 +44,4 @@ conda activate zahra
 #python3 setup.py install
 ### Run your work
 cd ~/Fractional-TRW
-python3 G40.py
+python3 K161.py

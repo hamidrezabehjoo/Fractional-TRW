@@ -5,7 +5,7 @@ from scipy.stats import bernoulli
 import matplotlib.pyplot as plt
 
 #################### Generate planar graph of size nxn #######################################################################
-n = 5
+n = 4
 grid_size = n**2
 k = 2 #alphabet size
 
@@ -137,9 +137,9 @@ for t in tt:
   print ("TRBP matrix energy functional: %f" % trbp.compute_energy_functional())
 
 
-np.savetxt("results/5x5/Z.txt", np.array(Z))
-np.savetxt("results/5x5/C.txt", np.array(C))
-np.savetxt("results/5x5/G.txt", np.array(G))
+np.savetxt("results/4x4/zero/Z.txt", np.array(Z))
+np.savetxt("results/4x4/zero/C.txt", np.array(C))
+np.savetxt("results/4x4/zero/G.txt", np.array(G))
 
 plt.figure(0)
 plt.plot(tt, C, 'bo', lw=2)
@@ -150,7 +150,7 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {C^{(\lambda)}}$')
 plt.grid()
-plt.savefig("results/5x5/C_FTRW.pdf")
+plt.savefig("results/4x4/zero/C_FTRW.pdf")
 
 
 plt.figure(1)
@@ -162,7 +162,7 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {Z^{(\lambda)}}$')
 plt.grid()
-plt.savefig("results/5x5/Z_FTRW.pdf")
+plt.savefig("results/4x4/zero/Z_FTRW.pdf")
 
 plt.figure(2)
 plt.plot(tt, G, 'ro', lw=2)
@@ -173,6 +173,6 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$G$')
 plt.grid()
-plt.savefig("results/5x5/G.pdf")
+plt.savefig("results/4x4/zero/G.pdf")
 #############################################################################################################
 
