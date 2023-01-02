@@ -76,6 +76,7 @@ def B00(x, edge_probabilities, grid_size):
     return den
    
 def corr_factor(n_samples, n_MC):
+    out = 0
     for i in range(n_MC):
         correction_factor = 0
         for k in range(n_samples):
@@ -84,7 +85,8 @@ def corr_factor(n_samples, n_MC):
             a = B11(x, edge_probabilities, grid_size)
             b = B00(x, edge_probabilities, grid_size)
             correction_factor += a/b
-    return np.log(correction_factor/n_samples)
+        out += correction_factor /n_samples
+    return np.log(out/n_MC)
 
 
 
