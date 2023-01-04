@@ -2,16 +2,8 @@
 # Fractional Tree Re-Weighted
 
 
-Read [here](https://gitlab.com/dimitra-maoutsa/odes_for_sdes/-/blob/master/README.md) the properly rendered readme file for now...
-
-
-(under construction -  for more detailed info please read the [relevant article](https://www.mdpi.com/1099-4300/22/8/802/htm))
-
-
-**Particle-based** framework for simulating **solutions of Fokker–Planck equations** that
-- is **effortless** to set up
-- provides **smooth transient solutions**
-- is **computationally efficient**.
+cd ~/mrftoold
+python3 setup.py install
 
 
 
