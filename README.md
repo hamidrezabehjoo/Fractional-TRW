@@ -1,5 +1,5 @@
 
-# Deterministic particle dynamics for simulating Fokker-Planck probability flows 
+# Fractional Tree Re-Weighted
 
 
 Read [here](https://gitlab.com/dimitra-maoutsa/odes_for_sdes/-/blob/master/README.md) the properly rendered readme file for now...
