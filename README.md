@@ -5,8 +5,7 @@
 cd ~/mrftoold<br>
 python3 setup.py install
 
-<\br>
-Plan to add Numba
+Plan to add [Numba](https://numba.pydata.org/)
 
 
 
