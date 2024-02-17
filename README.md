@@ -5,7 +5,7 @@
 cd ~/mrftoold<br>
 python3 setup.py install
 
-Plan to add [JAX](https://jax.readthedocs.io/en/latest/notebooks/quickstart.html)
+Plan to add CUDA support
 
 
 
