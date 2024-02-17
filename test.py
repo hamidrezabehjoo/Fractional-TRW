@@ -5,7 +5,7 @@ from scipy.stats import bernoulli
 import matplotlib.pyplot as plt
 
 #################### Generate planar graph of size nxn #######################################################################
-n = 3
+n = 5
 grid_size = n**2
 k = 2 #alphabet size
 
