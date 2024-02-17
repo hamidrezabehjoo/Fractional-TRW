@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 path = "3x3"
 
 #################### Generate planar graph of size nxn #######################################################################
-n = 2
+n = 3
 grid_size = n**2
 k = 2 #alphabet size
 
