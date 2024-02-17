@@ -23,7 +23,7 @@ class BeliefPropagator(Inference):
         self.messages = dict()
         self.init_messages()
         self.init_beliefs()
-        self.max_iter = 300
+        self.max_iter = 500
 
     def set_max_iter(self, max_iter):
         """

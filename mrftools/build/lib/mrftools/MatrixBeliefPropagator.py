@@ -32,7 +32,7 @@ class MatrixBeliefPropagator(Inference):
         self.belief_mat = np.zeros((self.mn.max_states, len(self.mn.variables)))
         self.pair_belief_tensor = np.zeros((self.mn.max_states, self.mn.max_states, self.mn.num_edges))
 
-        self.max_iter = 300  # default maximum iterations
+        self.max_iter = 500  # default maximum iterations
 
         # the augmented_mat is used to condition variables or for loss-augmented inference for max-margin learning
         self.augmented_mat = np.zeros((self.mn.max_states, len(self.mn.variables)))
