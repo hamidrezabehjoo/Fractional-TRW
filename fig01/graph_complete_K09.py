@@ -3,7 +3,7 @@ from mrftools import *
 import numpy as np
 from scipy.stats import bernoulli
 import matplotlib.pyplot as plt
-
+path = "k09"
 #################### Generate planar graph of size nxn #######################################################################
 n = 3
 grid_size = n**2
@@ -133,9 +133,9 @@ for t in tt:
   print ("TRBP matrix energy functional: %f" % trbp.compute_energy_functional())
 
 
-np.savetxt("results/k09/Z.txt", np.array(Z))
-np.savetxt("results/k09/C.txt", np.array(C))
-np.savetxt("results/k09/G.txt", np.array(G))
+np.savetxt(path + "/Z.txt", np.array(Z))
+np.savetxt(path + "/C.txt", np.array(C))
+np.savetxt(path + "/G.txt", np.array(G))
 
 plt.figure(0)
 plt.plot(tt, C, 'bo', lw=2)
@@ -146,7 +146,7 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {C^{(\lambda)}}$')
 plt.grid()
-plt.savefig("results/k09/C_FTRW.pdf")
+plt.savefig(path + "/C_FTRW.pdf")
 
 
 plt.figure(1)
@@ -158,7 +158,7 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$\log {Z^{(\lambda)}}$')
 plt.grid()
-plt.savefig("results/k09/Z_FTRW.pdf")
+plt.savefig(path + "/Z_FTRW.pdf")
 
 plt.figure(2)
 plt.plot(tt, G, 'ro', lw=2)
@@ -169,6 +169,6 @@ plt.xlim([0, 1])
 plt.xlabel('$\lambda$')
 plt.ylabel('$G$')
 plt.grid()
-plt.savefig("results/k09/G.pdf")
+plt.savefig(path + "/G.pdf")
 #############################################################################################################
 

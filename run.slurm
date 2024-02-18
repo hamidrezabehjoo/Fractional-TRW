@@ -20,6 +20,6 @@ python3 setup.py install
 
 
 cd ~/Fractional-TRW/fig01
-python3 planar_graph_3x3.py
+python3 graph_complete_K09.py
 
 
