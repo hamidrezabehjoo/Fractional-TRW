@@ -1,2 +1,179 @@
-/var/spool/slurm/d/job9130318/slurm_script: line 16: cd: /home/u14/hbehjoo/mrftools: No such file or directory
-python3: can't open file '/home/u14/hbehjoo/Fractional-TRW/setup.py': [Errno 2] No such file or directory
+running install
+/home/u14/hbehjoo/env11/lib/python3.11/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+/home/u14/hbehjoo/env11/lib/python3.11/site-packages/setuptools/command/easy_install.py:144: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+running bdist_egg
+running egg_info
+writing mrftools.egg-info/PKG-INFO
+writing dependency_links to mrftools.egg-info/dependency_links.txt
+writing top-level names to mrftools.egg-info/top_level.txt
+reading manifest file 'mrftools.egg-info/SOURCES.txt'
+writing manifest file 'mrftools.egg-info/SOURCES.txt'
+installing library code to build/bdist.linux-x86_64/egg
+running install_lib
+running build_py
+creating build/bdist.linux-x86_64/egg
+creating build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/Learner.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/opt.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/MaxProductBeliefPropagator.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/BeliefPropagator.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/MarkovNet.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/EM.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/BruteForce.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/MaxProductLinearProgramming.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/MatrixTRBeliefPropagator.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/ConvexBeliefPropagator.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/PairedDual.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/Inference.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/ApproxMaxLikelihood.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/MatrixBeliefPropagator.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/PrimalDual.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/ImageLoader.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/util.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/__init__.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/LogLinearModel.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/GibbsSampler.py -> build/bdist.linux-x86_64/egg/mrftools
+copying build/lib/mrftools/TreeReweightedBeliefPropagator.py -> build/bdist.linux-x86_64/egg/mrftools
+creating build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_trbp.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_matrix_trbp.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_belief_propagator.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_imageloader.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_learner.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_matrix_belief_propagator.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_markov_net.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_convex_bp.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_approx_max_likelihood.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_gibbs_sampling.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_log_linear_model.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_integration.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_opt.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_image_segmentation.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/__init__.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_maxproduct_linear_programming.py -> build/bdist.linux-x86_64/egg/tests
+copying build/lib/tests/test_maxproduct_belief_propagator.py -> build/bdist.linux-x86_64/egg/tests
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/Learner.py to Learner.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/opt.py to opt.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/MaxProductBeliefPropagator.py to MaxProductBeliefPropagator.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/BeliefPropagator.py to BeliefPropagator.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/MarkovNet.py to MarkovNet.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/EM.py to EM.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/BruteForce.py to BruteForce.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/MaxProductLinearProgramming.py to MaxProductLinearProgramming.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/MatrixTRBeliefPropagator.py to MatrixTRBeliefPropagator.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/ConvexBeliefPropagator.py to ConvexBeliefPropagator.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/PairedDual.py to PairedDual.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/Inference.py to Inference.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/ApproxMaxLikelihood.py to ApproxMaxLikelihood.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/MatrixBeliefPropagator.py to MatrixBeliefPropagator.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/PrimalDual.py to PrimalDual.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/ImageLoader.py to ImageLoader.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/util.py to util.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/__init__.py to __init__.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/LogLinearModel.py to LogLinearModel.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/GibbsSampler.py to GibbsSampler.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/mrftools/TreeReweightedBeliefPropagator.py to TreeReweightedBeliefPropagator.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_trbp.py to test_trbp.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_matrix_trbp.py to test_matrix_trbp.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_belief_propagator.py to test_belief_propagator.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_imageloader.py to test_imageloader.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_learner.py to test_learner.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_matrix_belief_propagator.py to test_matrix_belief_propagator.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_markov_net.py to test_markov_net.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_convex_bp.py to test_convex_bp.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_approx_max_likelihood.py to test_approx_max_likelihood.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_gibbs_sampling.py to test_gibbs_sampling.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_log_linear_model.py to test_log_linear_model.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_integration.py to test_integration.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_opt.py to test_opt.cpython-311.pyc
+build/bdist.linux-x86_64/egg/tests/test_opt.py:45: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if args and args['hello'] is 'world':
+build/bdist.linux-x86_64/egg/tests/test_opt.py:52: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if args and args['hello'] is 'world':
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_image_segmentation.py to test_image_segmentation.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/__init__.py to __init__.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_maxproduct_linear_programming.py to test_maxproduct_linear_programming.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tests/test_maxproduct_belief_propagator.py to test_maxproduct_belief_propagator.cpython-311.pyc
+creating build/bdist.linux-x86_64/egg/EGG-INFO
+copying mrftools.egg-info/PKG-INFO -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying mrftools.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying mrftools.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying mrftools.egg-info/top_level.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+zip_safe flag not set; analyzing archive contents...
+tests.__pycache__.test_imageloader.cpython-311: module references __file__
+tests.__pycache__.test_integration.cpython-311: module references __file__
+creating 'dist/mrftools-0.0.1-py3.11.egg' and adding 'build/bdist.linux-x86_64/egg' to it
+removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+Processing mrftools-0.0.1-py3.11.egg
+removing '/home/u14/hbehjoo/env11/lib/python3.11/site-packages/mrftools-0.0.1-py3.11.egg' (and everything under it)
+creating /home/u14/hbehjoo/env11/lib/python3.11/site-packages/mrftools-0.0.1-py3.11.egg
+Extracting mrftools-0.0.1-py3.11.egg to /home/u14/hbehjoo/env11/lib/python3.11/site-packages
+/home/u14/hbehjoo/env11/lib/python3.11/site-packages/mrftools-0.0.1-py3.11.egg/tests/test_opt.py:45: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if args and args['hello'] is 'world':
+/home/u14/hbehjoo/env11/lib/python3.11/site-packages/mrftools-0.0.1-py3.11.egg/tests/test_opt.py:52: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if args and args['hello'] is 'world':
+mrftools 0.0.1 is already the active version in easy-install.pth
+
+Installed /home/u14/hbehjoo/env11/lib/python3.11/site-packages/mrftools-0.0.1-py3.11.egg
+Processing dependencies for mrftools==0.0.1
+Finished processing dependencies for mrftools==0.0.1
+0 1
+0 3
+1 2
+1 4
+2 5
+3 4
+3 6
+4 5
+4 7
+5 8
+6 7
+7 8
+z_true:	 32.585563679369066
+z_trw:	 33.33225605241825
+z_bp:	 32.44264104612692
+0.05
+TRBP matrix energy functional: 33.276838
+0.0975
+TRBP matrix energy functional: 33.177668
+0.14500000000000002
+TRBP matrix energy functional: 33.051401
+0.1925
+TRBP matrix energy functional: 32.917029
+0.24
+TRBP matrix energy functional: 32.790708
+0.2875
+TRBP matrix energy functional: 32.682960
+0.335
+TRBP matrix energy functional: 32.598402
+0.3825
+TRBP matrix energy functional: 32.536992
+0.43
+TRBP matrix energy functional: 32.495716
+0.4775
+TRBP matrix energy functional: 32.470143
+0.525
+TRBP matrix energy functional: 32.455643
+0.5725
+TRBP matrix energy functional: 32.448186
+0.6200000000000001
+TRBP matrix energy functional: 32.444746
+0.6675000000000001
+TRBP matrix energy functional: 32.443340
+0.7150000000000001
+TRBP matrix energy functional: 32.442840
+0.7625000000000001
+TRBP matrix energy functional: 32.442688
+0.81
+TRBP matrix energy functional: 32.442650
+0.8575
+TRBP matrix energy functional: 32.442642
+0.905
+TRBP matrix energy functional: 32.442641
+0.9525
+TRBP matrix energy functional: 32.442641
+1.0
+TRBP matrix energy functional: 32.442641
+Detailed performance metrics for this job will be available at https://metrics.hpc.arizona.edu/#job_viewer?action=show&realm=SUPREMM&resource_id=73&local_job_id=9130534 by 8am on 2024/02/18.

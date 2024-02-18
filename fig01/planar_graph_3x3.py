@@ -140,7 +140,7 @@ for t in tt:
 
 np.savetxt(path + "/Z.txt", np.array(Z))
 np.savetxt(path + "/C.txt", np.array(C))
-np.savetxt(path + "G.txt", np.array(G))
+np.savetxt(path + "/G.txt", np.array(G))
 
 plt.figure(0)
 plt.plot(tt, C, 'bo', lw=2)
