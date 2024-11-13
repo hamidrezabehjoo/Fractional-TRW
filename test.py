@@ -71,10 +71,10 @@ def B00(x, edge_probabilities, grid_size):
             if a < i:
                sum1 += edge_probabilities[(a,i)]
             else:
-               sum1 += edge_probabilities[(i,a)]				
+               sum1 += edge_probabilities[(i,a)]
         den *= (b[x[i]])** sum1
     return den
-   
+
 def corr_factor(n_samples, n_MC):
     out = 0
     for i in range(n_MC):
@@ -91,7 +91,7 @@ def corr_factor(n_samples, n_MC):
 
 
 def gen_samples(grid_size):
-    x = np.zeros(grid_size) 
+    x = np.zeros(grid_size)
     for i in range(grid_size):
         p = np.exp(trbp.var_beliefs[i])
         x[i] = bernoulli.rvs(1-p[0], 0)
@@ -106,14 +106,14 @@ def grad(x, edge_probabilities):
         B = np.exp(trbp.pair_beliefs[edge])
         a = np.exp(trbp.var_beliefs[edge[0]])
         b = np.exp(trbp.var_beliefs[edge[1]])
-        
+
         dummy = B[x[edge[0]], x[edge[1]]]
         cummy = a[x[edge[0]]]
         mummy = b[x[edge[1]]]
         H_ab += -dummy * np.log(dummy) *(1-weight)
         H_a  +=  cummy * np.log(cummy) *(1-weight)
         H_a  +=  mummy * np.log(mummy) *(1-weight)
-    
+
     return H_ab + H_a + H_b
 #############################################################################################################
 Z = []
@@ -175,4 +175,3 @@ plt.ylabel('$G$')
 plt.grid()
 plt.savefig("results/4x4/G.pdf")
 #############################################################################################################
-
